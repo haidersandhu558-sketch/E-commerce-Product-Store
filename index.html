@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORBIT — Turntables & Audio Gear</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span class="logo">ORBIT</span>
+      <nav class="main-nav">
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+      </nav>
+      <button class="cart-btn" id="cartBtn">
+        Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <p class="hero-label">New arrivals</p>
+    <h1>Turntables and gear for people who listen closely.</h1>
+    <p class="hero-sub">Belt-driven decks, precision cartridges, and the small accessories that make a listening room feel finished.</p>
+  </section>
+
+  <section id="shop" class="shop">
+    <aside class="filters">
+      <div class="filter-group">
+        <label for="searchInput">Search</label>
+        <input type="text" id="searchInput" placeholder="Search products…">
+      </div>
+
+      <div class="filter-group">
+        <p class="filter-title">Category</p>
+        <div class="filter-options" id="categoryFilters"></div>
+      </div>
+
+      <div class="filter-group">
+        <p class="filter-title">Max price: <span id="priceValue">$500</span></p>
+        <input type="range" id="priceRange" min="20" max="500" value="500">
+      </div>
+
+      <div class="filter-group">
+        <label for="sortSelect">Sort by</label>
+        <select id="sortSelect">
+          <option value="default">Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name-asc">Name: A–Z</option>
+        </select>
+      </div>
+    </aside>
+
+    <div class="product-area">
+      <p class="results-count" id="resultsCount"></p>
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <p class="section-label">About</p>
+    <p class="about-text">ORBIT is a fictional demo store built to showcase front-end engineering: dynamic filtering, cart state management, and a multi-step checkout — all in vanilla JavaScript with no frameworks or backend.</p>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 ORBIT. Demo project by Haider Sandhu.</p>
+  </footer>
+
+  <!-- Cart drawer -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="close-btn" id="closeCart">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+    </div>
+  </aside>
+
+  <!-- Checkout modal -->
+  <div class="modal-overlay" id="checkoutOverlay">
+    <div class="modal" id="checkoutModal">
+      <button class="close-btn modal-close" id="closeCheckout">×</button>
+
+      <div class="modal-step" data-step="1" id="step1">
+        <p class="step-label">Step 1 of 2</p>
+        <h2>Shipping details</h2>
+        <form id="shippingForm" novalidate>
+          <label>Full name
+            <input type="text" name="fullName" required>
+            <span class="field-error"></span>
+          </label>
+          <label>Email
+            <input type="email" name="email" required>
+            <span class="field-error"></span>
+          </label>
+          <label>Shipping address
+            <input type="text" name="address" required>
+            <span class="field-error"></span>
+          </label>
+          <label>City
+            <input type="text" name="city" required>
+            <span class="field-error"></span>
+          </label>
+          <button type="submit" class="primary-btn">Continue to review</button>
+        </form>
+      </div>
+
+      <div class="modal-step hidden" data-step="2" id="step2">
+        <p class="step-label">Step 2 of 2</p>
+        <h2>Review &amp; place order</h2>
+        <div class="review-summary" id="reviewSummary"></div>
+        <div class="review-items" id="reviewItems"></div>
+        <button class="secondary-btn" id="backToStep1">← Back</button>
+        <button class="primary-btn" id="placeOrderBtn">Place order</button>
+      </div>
+
+      <div class="modal-step hidden" data-step="3" id="step3">
+        <p class="step-label">Order confirmed</p>
+        <h2>Thanks — your order is in.</h2>
+        <p class="confirmation-text">A confirmation has been sent to <span id="confirmEmail"></span>. Order reference: <span id="orderRef"></span>.</p>
+        <button class="primary-btn" id="closeConfirmation">Continue shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
